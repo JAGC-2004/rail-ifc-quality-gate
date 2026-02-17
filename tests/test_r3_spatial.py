@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 
 from rail_ifc_quality_gate.ifc_io import open_ifc
-from rail_ifc_quality_gate.r3_spatial import compute_r3_preliminary, postprocess_r3_group, REGIME_LOCAL, REGIME_PROJECTED_UTM_M
+from rail_ifc_quality_gate.r3_spatial import compute_r3_preliminary, postprocess_r3_group, REGIME_PROJECTED_UTM_M
 
 
 def test_r3_preliminary_on_toy_ifc(tmp_path: Path):
