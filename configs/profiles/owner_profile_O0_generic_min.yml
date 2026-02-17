@@ -1,0 +1,7 @@
+name: O0_generic_min
+core_psets_by_state:
+  EX: ["Pset_AssetIdentification"]
+  PC: ["Pset_AssetIdentification"]
+  EW: ["Pset_AssetIdentification"]
+required_fields_by_pset:
+  Pset_AssetIdentification: ["AssetId", "AssetType"]

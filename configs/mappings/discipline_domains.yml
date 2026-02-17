@@ -1,0 +1,63 @@
+# Discipline/domain taxonomy and discipline-aware spatial tolerance τ(disc)
+
+disciplines:
+  EST:
+    domain: building
+    tau_m: 5
+    linear_package: false
+  EST-PASARELA:
+    domain: building
+    tau_m: 5
+    linear_package: false
+  ARQ:
+    domain: building
+    tau_m: 5
+    linear_package: false
+  GEN:
+    domain: mep_industrial
+    tau_m: 5
+    linear_package: false
+  DRE:
+    domain: mep_industrial
+    tau_m: 5
+    linear_package: false
+  ICO:
+    domain: mep_industrial
+    tau_m: 5
+    linear_package: false
+  IFS:
+    domain: mep_industrial
+    tau_m: 5
+    linear_package: false
+  ISC:
+    domain: mep_industrial
+    tau_m: 5
+    linear_package: false
+  OCE:
+    domain: mep_industrial
+    tau_m: 5
+    linear_package: false
+  IEL:
+    domain: electrification
+    tau_m: 5
+    linear_package: false
+  IEF-IEN-IEL:
+    domain: electrification
+    tau_m: 5
+    linear_package: false
+  GAL:
+    domain: interface
+    tau_m: 5
+    linear_package: false
+  VIA:
+    domain: linear
+    tau_m: 20
+    linear_package: true
+  URB:
+    domain: linear
+    tau_m: 20
+    linear_package: true
+  LE:
+    domain: linear
+    tau_m: 20
+    linear_package: true

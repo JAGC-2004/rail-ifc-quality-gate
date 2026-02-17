@@ -1,0 +1,13 @@
+name: rail-ifc-quality-gate
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - pip
+  - numpy>=1.24
+  - pandas>=2.0
+  - matplotlib>=3.7
+  - pyyaml>=6.0
+  - pip:
+      - ifcopenshell>=0.7.0
+      - -e .

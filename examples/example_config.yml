@@ -1,0 +1,9 @@
+# Example configuration for running the pipeline
+thresholds:
+  baseline: configs/thresholds/baseline.yml
+
+profiles:
+  owner_profile: configs/profiles/owner_profile_case_study_anonymized.yml
+
+mappings:
+  discipline_domains: configs/mappings/discipline_domains.yml

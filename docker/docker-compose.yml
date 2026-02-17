@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  rail-ifc-quality-gate:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../:/app
+    working_dir: /app
+    entrypoint: ["rail-ifc-quality-gate"]

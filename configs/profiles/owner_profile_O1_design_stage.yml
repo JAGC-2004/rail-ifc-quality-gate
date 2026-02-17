@@ -1,0 +1,8 @@
+name: O1_design_stage
+core_psets_by_state:
+  EX: ["Pset_AssetIdentification"]
+  PC: ["Pset_AssetIdentification", "Pset_DesignMetadata"]
+  EW: ["Pset_AssetIdentification", "Pset_DesignMetadata"]
+required_fields_by_pset:
+  Pset_AssetIdentification: ["AssetId", "AssetType"]
+  Pset_DesignMetadata: ["DesignStage", "Revision"]

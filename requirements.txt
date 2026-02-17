@@ -1,0 +1,6 @@
+# Optional: install IFC parsing support + dev extras
+ifcopenshell>=0.7.0
+pyyaml>=6.0
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7

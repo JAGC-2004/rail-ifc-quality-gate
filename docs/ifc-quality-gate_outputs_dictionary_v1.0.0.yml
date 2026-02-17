@@ -1,0 +1,317 @@
+schema_version: 1.0.1
+generated: '2026-02-13'
+tables:
+  file_level_outputs.csv:
+  - column: schema_version
+    type: string
+    unit: '-'
+    description: Semantic version of the public output schema produced by the pipeline.
+    allowed_values: e.g., 1.0.1
+    example: 1.0.1
+  - column: file
+    type: string
+    unit: '-'
+    description: IFC filename (no directory).
+    allowed_values: '*.ifc'
+    example: VIA_Depot_A_PC_PASS_0001.ifc
+  - column: case
+    type: string
+    unit: '-'
+    description: Case identifier (anonymized portfolio/site tag).
+    allowed_values: Depot_A, Depot_B, ...
+    example: Depot_A
+  - column: state
+    type: string
+    unit: '-'
+    description: Delivery state tag used to select stage-specific profiles and reporting.
+    allowed_values: EX, PC, EW, LEGACY
+    example: PC
+  - column: discipline
+    type: string
+    unit: '-'
+    description: Discipline code inferred from filename (project taxonomy).
+    allowed_values: VIA, URB, EST, ICO, IEL, ...
+    example: VIA
+  - column: domain
+    type: string
+    unit: '-'
+    description: Hybrid-asset domain class used for discipline-aware rules.
+    allowed_values: linear, building, mep_industrial, electrification, interface,
+      unknown
+    example: linear
+  - column: ifc_schema
+    type: string
+    unit: '-'
+    description: IFC schema declared by the parsed file.
+    allowed_values: IFC2X3, IFC4, IFC4X3, ...
+    example: IFC2X3
+  - column: georef_regime
+    type: string
+    unit: '-'
+    description: Spatial scale / georeferencing regime classification (R3).
+    allowed_values: Projected (UTM/m); Projected (unit/scale mismatch); Local (non-georeferenced)
+    example: Projected (UTM/m)
+  - column: truenorth_deg
+    type: float
+    unit: deg
+    description: TrueNorth azimuth extracted from the geometric representation context
+      (0° aligned to +Y). NaN if missing.
+    allowed_values: 0–360 or NaN
+    example: '0.0'
+  - column: truenorth_outlier
+    type: int
+    unit: '-'
+    description: 1 if TrueNorth deviates more than the outlier threshold from the
+      Case×State median; else 0.
+    allowed_values: 0 or 1
+    example: '0'
+  - column: anchor_dispersion_m
+    type: float
+    unit: m
+    description: Euclidean distance between the file anchor point and the Case×State
+      median anchor (R3 inter-model consistency).
+    allowed_values: ≥0
+    example: '1.8'
+  - column: tau_m
+    type: float
+    unit: m
+    description: Discipline-aware anchor tolerance τ(disc) used for the Spatial gate.
+    allowed_values: e.g., 5 (building/MEP), 20 (linear)
+    example: '20'
+  - column: spatial_pass
+    type: int
+    unit: '-'
+    description: 'Spatial gate outcome (R3): projected UTM/m regime AND anchor_dispersion_m
+      ≤ tau_m AND truenorth_outlier=0.'
+    allowed_values: 0 or 1
+    example: '1'
+  - column: proxy_pct
+    type: float
+    unit: '%'
+    description: 'Semantic proxy ratio (R4): count(IfcBuildingElementProxy)/count(IfcElement)×100.
+      NaN if no IfcElement.'
+    allowed_values: 0–100 or NaN
+    example: '12.5'
+  - column: semantic_pass
+    type: int
+    unit: '-'
+    description: 'Semantic gate outcome (R4): 1 if proxy_pct < proxy_threshold_pct;
+      else 0.'
+    allowed_values: 0 or 1
+    example: '1'
+  - column: overall_I
+    type: float
+    unit: ratio (0–1)
+    description: 'Continuous file-level information completeness KPI (R5): mean(I_fill)
+      across core PSETs.'
+    allowed_values: 0–1 or NaN
+    example: '0.92'
+  - column: Data_gate_pass
+    type: int
+    unit: '-'
+    description: 'Binary Data gate outcome (R6): AND across I_pass(core PSET profile
+      by stage).'
+    allowed_values: 0 or 1
+    example: '1'
+  - column: nopk_align_flag
+    type: int
+    unit: '-'
+    description: 'Linear-discipline diagnostic: 1 if no PK/alignment-related property
+      names were detected; else 0. Not used as a hard gate by default.'
+    allowed_values: 0 or 1
+    example: '0'
+  - column: All_gates_pass
+    type: int
+    unit: '-'
+    description: 'Integrated gate (R7): spatial_pass ∧ semantic_pass ∧ Data_gate_pass.'
+    allowed_values: 0 or 1
+    example: '1'
+  - column: failure_driver
+    type: string
+    unit: '-'
+    description: Failure attribution label derived from which gates failed (R7).
+    allowed_values: Pass; Spatial; Semantic; Data; Mixed (Spatial+Semantic); Mixed
+      (Spatial+Data); Mixed (Semantic+Data); Mixed (Spatial+Semantic+Data)
+    example: Mixed (Spatial+Data)
+  - column: proxy_threshold_pct
+    type: float
+    unit: '%'
+    description: Configured threshold for the Semantic gate.
+    allowed_values: '-'
+    example: '50.0'
+  - column: S_presence_threshold
+    type: float
+    unit: ratio (0–1)
+    description: Configured S_presence threshold used when computing per-PSET metrics
+      (presence/coverage).
+    allowed_values: '-'
+    example: '0.95'
+  - column: I_fill_threshold
+    type: float
+    unit: ratio (0–1)
+    description: Configured I_fill threshold used when computing per-PSET metrics
+      (required-field fill).
+    allowed_values: '-'
+    example: '0.80'
+  - column: profile_name
+    type: string
+    unit: '-'
+    description: Owner profile identifier used to select core PSETs and required fields.
+    allowed_values: '-'
+    example: O0_generic_min
+  per_pset_outputs.csv:
+  - column: schema_version
+    type: string
+    unit: '-'
+    description: Semantic version of the public output schema produced by the pipeline.
+    allowed_values: e.g., 1.0.1
+    example: 1.0.1
+  - column: file
+    type: string
+    unit: '-'
+    description: IFC filename (no directory).
+    allowed_values: '*.ifc'
+    example: VIA_Depot_A_PC_PASS_0001.ifc
+  - column: case
+    type: string
+    unit: '-'
+    description: Case identifier (anonymized).
+    allowed_values: '-'
+    example: Depot_A
+  - column: state
+    type: string
+    unit: '-'
+    description: Delivery state tag.
+    allowed_values: EX, PC, EW, LEGACY
+    example: PC
+  - column: discipline
+    type: string
+    unit: '-'
+    description: Discipline code inferred from filename.
+    allowed_values: '-'
+    example: VIA
+  - column: domain
+    type: string
+    unit: '-'
+    description: Hybrid-asset domain class.
+    allowed_values: '-'
+    example: linear
+  - column: pset
+    type: string
+    unit: '-'
+    description: Property set group evaluated for this stage profile (core PSET).
+    allowed_values: '-'
+    example: Pset_AssetIdentification
+  - column: S_presence
+    type: float
+    unit: ratio (0–1)
+    description: Presence/coverage indicator for the PSET in the IFC (file-level,
+      best-effort). Typically 0 or 1.
+    allowed_values: 0 or 1
+    example: '1'
+  - column: I_fill
+    type: float
+    unit: ratio (0–1)
+    description: Fraction of required fields in the PSET that are non-empty (file-level).
+    allowed_values: 0–1
+    example: '1.0'
+  - column: S_pass
+    type: int
+    unit: '-'
+    description: Pass flag for presence check against S_presence_threshold.
+    allowed_values: 0 or 1
+    example: '1'
+  - column: I_pass
+    type: int
+    unit: '-'
+    description: Pass flag for required-field fill against thresholds (presence +
+      I_fill ≥ I_fill_threshold).
+    allowed_values: 0 or 1
+    example: '1'
+  - column: n_required_fields
+    type: int
+    unit: count
+    description: Number of required fields configured for this PSET in the owner profile.
+    allowed_values: ≥0
+    example: '2'
+  - column: S_presence_threshold
+    type: float
+    unit: ratio (0–1)
+    description: Configured threshold for S_presence.
+    allowed_values: '-'
+    example: '0.95'
+  - column: I_fill_threshold
+    type: float
+    unit: ratio (0–1)
+    description: Configured threshold for I_fill.
+    allowed_values: '-'
+    example: '0.80'
+  - column: profile_name
+    type: string
+    unit: '-'
+    description: Owner profile identifier.
+    allowed_values: '-'
+    example: O0_generic_min
+  case_state_summary.csv:
+  - column: case
+    type: string
+    unit: '-'
+    description: Case identifier (anonymized).
+    allowed_values: '-'
+    example: Depot_A
+  - column: state
+    type: string
+    unit: '-'
+    description: Delivery state tag.
+    allowed_values: EX, PC, EW, LEGACY
+    example: PC
+  - column: case_state
+    type: string
+    unit: '-'
+    description: Composite reporting unit (case × state).
+    allowed_values: <case>×<state>
+    example: Depot_A×PC
+  - column: N_files
+    type: int
+    unit: count
+    description: Number of IFC files in the reporting unit.
+    allowed_values: ≥1
+    example: '9'
+  - column: Spatial_pass_rate
+    type: float
+    unit: ratio (0–1)
+    description: Mean spatial_pass across files in the reporting unit.
+    allowed_values: 0–1
+    example: '0.78'
+  - column: Semantic_pass_rate
+    type: float
+    unit: ratio (0–1)
+    description: Mean semantic_pass across files in the reporting unit.
+    allowed_values: 0–1
+    example: '0.44'
+  - column: Data_gate_pass_rate
+    type: float
+    unit: ratio (0–1)
+    description: Mean Data_gate_pass across files in the reporting unit.
+    allowed_values: 0–1
+    example: '0.67'
+  - column: All_gates_pass_rate
+    type: float
+    unit: ratio (0–1)
+    description: Mean All_gates_pass across files in the reporting unit.
+    allowed_values: 0–1
+    example: '0.33'
+  - column: overall_I_mean
+    type: float
+    unit: ratio (0–1)
+    description: Mean overall_I across files in the reporting unit (diagnostic KPI).
+    allowed_values: 0–1 or NaN
+    example: '0.86'
+  figure_source_tables.xlsx:
+  - column: (each sheet)
+    type: mixed
+    unit: '-'
+    description: Pre-computed pivot tables (source data) used to reproduce the paper
+      figures. Derived from the public CSV outputs.
+    allowed_values: See sheet names
+    example: '-'

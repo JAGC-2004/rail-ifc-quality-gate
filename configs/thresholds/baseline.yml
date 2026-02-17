@@ -1,0 +1,9 @@
+# Baseline operational thresholds (paper-aligned)
+proxy_threshold_pct: 50.0
+
+# Data gate thresholds (per-PSET)
+S_presence_threshold: 0.95
+I_fill_threshold: 0.80
+
+# Spatial tolerance mapping is discipline-aware (see mappings/discipline_domains.yml)
+truenorth_outlier_deg: 5.0

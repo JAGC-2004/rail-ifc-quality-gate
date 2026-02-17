@@ -1,0 +1,11 @@
+# IFC schema support notes
+
+supported_schemas:
+  - IFC2X3
+  - IFC4
+  - IFC4X3
+
+notes:
+  - "This pipeline computes metrics from IFC exchanges and therefore remains usable across schemas."
+  - "IFC4.3 (IFC4X3) improves linear infrastructure expressiveness (alignments, linear positioning, rail domain entities)."
+  - "Some metrics may become more precise under IFC4.3 (e.g., alignment-based placement vs cartesian placement)."

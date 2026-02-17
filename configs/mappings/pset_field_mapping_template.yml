@@ -1,0 +1,16 @@
+# Template for building owner profiles and mapping PSET fields.
+# Fill with your own stage profiles and required fields, then reference it in configs/profiles.
+
+name: owner_profile_TEMPLATE
+
+core_psets_by_state:
+  EX: []
+  PC: []
+  EW: []
+
+required_fields_by_pset:
+  # PSET_NAME: [FieldA, FieldB, ...]
+  # Example:
+  # Pset_AssetIdentification: ["AssetId", "AssetType"]
+
+linear_pk_align_keywords: ["PK", "ALIGN"]

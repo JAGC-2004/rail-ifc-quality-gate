@@ -1,0 +1,11 @@
+name: case_study_anonymized
+core_psets_by_state:
+  EX: ["01_FGV_IDENT"]
+  PC: ["01_FGV_IDENT", "02_FGV_MEDICIONES", "03_FGV_PROYECTO"]
+  EW: ["01_FGV_IDENT", "03_FGV_PROYECTO", "05_FGV_OBRA"]
+required_fields_by_pset:
+  01_FGV_IDENT: ["AssetId", "AssetClass"]
+  02_FGV_MEDICIONES: ["QuantityBasis"]
+  03_FGV_PROYECTO: ["DesignStatus"]
+  05_FGV_OBRA: ["AsBuiltStatus"]
+linear_pk_align_keywords: ["PK", "ALIGN"]

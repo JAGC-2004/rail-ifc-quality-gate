@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+type: software
+title: rail-ifc-quality-gate
+version: 1.0.2
+date-released: 2026-02-13
+license: MIT
+authors:
+- family-names: García Cerezo
+  given-names: Juan Antonio
+- family-names: Contributors
+  given-names: rail-ifc-quality-gate
+repository-code: https://example.org/rail-ifc-quality-gate
+keywords:
+- openBIM
+- IFC
+- ISO 19650
+- quality gate
+- rail
+- infrastructure

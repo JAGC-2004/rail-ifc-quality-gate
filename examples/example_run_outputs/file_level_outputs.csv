@@ -1,0 +1,4 @@
+file,case,state,discipline,domain,georef_regime,truenorth_deg,anchor_dispersion_m,proxy_pct,overall_I,spatial_pass,semantic_pass,Data_gate_pass,All_gates_pass,failure_driver
+toy_case_0001.ifc,Depot_A,PC,EST,building,Projected (UTM/m),0,0,10,0.9,1,1,1,1,Pass
+toy_case_0002.ifc,Depot_A,PC,VIA,linear,Projected (unit/scale mismatch),0,25,75,0.5,0,0,0,0,Mixed
+toy_case_0003.ifc,Depot_B,EX,ICO,mep_industrial,Local (non-georeferenced),,0,0,0.2,0,1,0,0,Mixed
